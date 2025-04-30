@@ -1,0 +1,5 @@
+app:
+    ui:
+        country: Country
+        drivers: Drivers
+        formula_one: Formula One
