@@ -1,5 +1,8 @@
 app:
     ui:
         country: Country
+        driver_number: Driver number
         drivers: Drivers
         formula_one: Formula One
+        show_team_radios: Show team radios
+        team_radios: Team radios

@@ -1,0 +1,7 @@
+{% set path = options.link.url %}
+{% set message = action.label|default('sylius.ui.show') %}
+{% set target = options.link.target|default(null) %}
+
+<a title="details" href="{{ path }}" {% if target %}target="{{ target }}"{% endif %} class="btn btn-icon" data-bs-toggle="tooltip" data-bs-title="{{ message|trans }}" {{ sylius_test_html_attribute('show-action', message|trans ) }}>
+    {{ ux_icon(action.icon|default('tabler:eye')) }}
+</a>

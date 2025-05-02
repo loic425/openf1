@@ -52,5 +52,9 @@ final class AdminMenuBuilder implements MenuBuilderInterface
         $formulaOne->addChild('admin_drivers', ['route' => 'app_admin_driver_index'])
             ->setLabel('app.ui.drivers')
         ;
+
+        $formulaOne->addChild('admin_team_radios', ['route' => 'app_admin_team_radio_index'])
+            ->setLabel('app.ui.team_radios')
+        ;
     }
 }
