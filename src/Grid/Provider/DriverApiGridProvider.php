@@ -20,16 +20,26 @@ final readonly class DriverApiGridProvider implements DataProviderInterface
 
     public function getData(Grid $grid, Parameters $parameters): PagerFantaInterface
     {
-        $drivers = iterator_to_array($this->getDrivers());
-
-        // start with an empty paginator
-        return new Pagerfanta(new ArrayAdapter($drivers));
+        return new Pagerfanta(
+            new ArrayAdapter(iterator_to_array(
+                $this->getDrivers($parameters->get('criteria')),
+            ))
+        );
     }
 
 
-    private function getDrivers(): iterable
+    private function getDrivers(array $criteria): iterable
     {
-        $responseData = $this->openF1Client->request('GET', '/v1/drivers?session_key=9158')->toArray();
+        $query = ['session_key' => 9158];
+
+        if (!empty($criteria['country'] ?? null)) {
+            $query['country_code'] = $criteria['country'];
+        }
+
+        $responseData = $this->openF1Client
+            ->request(method: 'GET', url: '/v1/drivers', options: ['query' => $query])
+            ->toArray()
+        ;
 
         foreach ($responseData as $row) {
             yield new DriverResource(

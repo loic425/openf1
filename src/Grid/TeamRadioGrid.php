@@ -2,19 +2,13 @@
 
 namespace App\Grid;
 
-use App\Grid\Filter\CountryFilter;
-use App\Grid\Provider\DriverEmptyGridProvider;
-use App\Grid\Provider\DriverFixedGridProvider;
-use App\Grid\Provider\DriverRepositoryGridProvider;
 use App\Grid\Provider\TeamRadioApiGridProvider;
-use App\Grid\Provider\TeamRadioFixedGridProvider;
-use App\Resource\PokemonResource;
+use App\Grid\Template\FieldTemplate;
 use App\Resource\TeamRadioResource;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
-use Sylius\Bundle\GridBundle\Builder\Filter\Filter;
 use Sylius\Bundle\GridBundle\Builder\Filter\StringFilter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
@@ -36,14 +30,14 @@ final class TeamRadioGrid extends AbstractGrid implements ResourceAwareGridInter
                 StringField::create('driverNumber'),
             )
             ->addField(
-                TwigField::create('date', 'shared/grid/field/datetime.html.twig')
+                TwigField::create('date', FieldTemplate::DATETIME->value)
                     ->setOption('vars', [
                         'th_class' => 'w-1 text-center',
                     ])
             )
             ->addActionGroup(
                 ItemActionGroup::create(
-                    Action::create('listen', 'open')
+                    Action::create('listen', 'show')
                         ->setLabel('app.ui.listen')
                         ->setIcon('subway:sound')
                         ->setOptions([

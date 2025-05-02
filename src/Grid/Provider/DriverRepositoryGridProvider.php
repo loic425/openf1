@@ -10,20 +10,18 @@ use Pagerfanta\PagerfantaInterface;
 use Sylius\Component\Grid\Data\DataProviderInterface;
 use Sylius\Component\Grid\Definition\Grid;
 use Sylius\Component\Grid\Parameters;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 final readonly class DriverRepositoryGridProvider implements DataProviderInterface
 {
     public function __construct(
-        private RequestStack $requestStack,
         private DriverRepository $driverRepository,
     ) {
     }
 
     public function getData(Grid $grid, Parameters $parameters): PagerFantaInterface
     {
-        $page = $this->requestStack?->getCurrentRequest()->query->getInt('page', 1) ?? 1;
-        $itemsPerPage = $this->requestStack?->getCurrentRequest()->query->getInt('limit', 10) ?? 10;
+        $page = (int) $parameters->get('page', 1);
+        $itemsPerPage = (int) $parameters->get('limit', 10);
         $criteria = $parameters->get('criteria');
 
         $paginator = $this->getDriversPaginator($page, $itemsPerPage, $criteria);
@@ -52,8 +50,6 @@ final readonly class DriverRepositoryGridProvider implements DataProviderInterfa
             $driverRepository = $driverRepository->withCountryCode($criteria['country']);
         }
 
-        $driverRepository = $driverRepository->withPagination($page, $itemsPerPage);
-
-        return $driverRepository->paginator();
+        return $driverRepository->withPagination($page, $itemsPerPage)->paginator();
     }
 }

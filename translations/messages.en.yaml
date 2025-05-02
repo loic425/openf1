@@ -4,5 +4,8 @@ app:
         driver_number: Driver number
         drivers: Drivers
         formula_one: Formula One
+        listen: Listen
+        sessions: Sessions
         show_team_radios: Show team radios
         team_radios: Team radios
+        year: Year

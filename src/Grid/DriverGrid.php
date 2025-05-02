@@ -3,12 +3,12 @@
 namespace App\Grid;
 
 use App\Grid\Filter\CountryFilter;
-use App\Grid\Provider\DriverEmptyGridProvider;
+use App\Grid\Provider\DriverApiGridProvider;
 use App\Grid\Provider\DriverFixedGridProvider;
 use App\Grid\Provider\DriverRepositoryGridProvider;
 use App\Resource\DriverResource;
-use App\Resource\PokemonResource;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
+use Sylius\Bundle\GridBundle\Builder\Action\ShowAction;
 use Sylius\Bundle\GridBundle\Builder\ActionGroup\ItemActionGroup;
 use Sylius\Bundle\GridBundle\Builder\Field\StringField;
 use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
@@ -24,7 +24,7 @@ final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterfac
     public function buildGrid(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            ->setProvider(DriverFixedGridProvider::class)
+            ->setProvider(DriverRepositoryGridProvider::class)
             ->addFilter(
                 Filter::create('country', CountryFilter::class)
                     ->setFormOptions([
@@ -68,6 +68,7 @@ final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterfac
                         ])
                         ->setLabel('app.ui.show_team_radios')
                         ->setIcon('tabler:radio'),
+                    ShowAction::create(),
                 )
             )
         ;

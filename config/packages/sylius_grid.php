@@ -21,6 +21,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         'templates' => [
             'action' => [
                 'open' => 'shared/grid/action/open.html.twig',
+                'show' => 'shared/grid/action/show.html.twig',
             ],
         ],
     ]);
