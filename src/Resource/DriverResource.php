@@ -3,10 +3,9 @@
 namespace App\Resource;
 
 use App\Grid\DriverGrid;
-use App\Grid\PokemonGrid;
-use App\Model\Pokemon;
 use Sylius\Resource\Metadata\AsResource;
 use Sylius\Resource\Metadata\Index;
+use Sylius\Resource\Metadata\Show;
 use Sylius\Resource\Model\ResourceInterface;
 
 #[AsResource(
@@ -15,6 +14,7 @@ use Sylius\Resource\Model\ResourceInterface;
     routePrefix: '/admin',
     operations: [
         new Index(grid: DriverGrid::class),
+        new Show(),
     ],
 )]
 final readonly class DriverResource implements ResourceInterface
