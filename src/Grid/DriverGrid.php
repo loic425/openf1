@@ -3,6 +3,7 @@
 namespace App\Grid;
 
 use App\Grid\Filter\CountryFilter;
+use App\Grid\Filter\TeamFilter;
 use App\Grid\Provider\DriverApiGridProvider;
 use App\Grid\Provider\DriverFixedGridProvider;
 use App\Grid\Provider\DriverRepositoryGridProvider;
@@ -17,6 +18,7 @@ use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 use Sylius\Component\Grid\Attribute\AsGrid;
+use Sylius\Component\Grid\Filter\StringFilter;
 
 #[AsGrid]
 final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterface
@@ -30,8 +32,16 @@ final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterfac
                     ->setFormOptions([
                         'alpha3' => true,
                         'autocomplete' => true,
+                        'placeholder' => 'Choose a country',
                     ])
                     ->setLabel('app.ui.country')
+            )
+            ->addFilter(
+                Filter::create('teamName', TeamFilter::class)
+                    ->setFormOptions([
+                        'autocomplete' => true,
+                    ])
+                    ->setLabel('app.ui.team')
             )
             ->addField(
                 TwigField::create('image', 'driver/grid/field/image.html.twig')
@@ -49,7 +59,9 @@ final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterfac
                 StringField::create('countryCode'),
             )
             ->addField(
-                StringField::create('teamName'),
+                StringField::create('teamName')
+                    ->setLabel('app.ui.team')
+                ,
             )
             ->addActionGroup(
                 ItemActionGroup::create(

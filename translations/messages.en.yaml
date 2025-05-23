@@ -7,5 +7,6 @@ app:
         listen: Listen
         sessions: Sessions
         show_team_radios: Show team radios
+        team: Team
         team_radios: Team radios
         year: Year

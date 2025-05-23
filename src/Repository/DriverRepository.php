@@ -2,11 +2,7 @@
 
 namespace App\Repository;
 
-use App\Model\Pokemon;
-use App\Resource\PokemonResource;
-use Countable;
 use Pagerfanta\Adapter\ArrayAdapter;
-use Pagerfanta\Adapter\FixedAdapter;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\PagerfantaInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -19,11 +15,20 @@ final class DriverRepository
     private ?int $itemsPerPage = null;
 
     private ?string $countryCode = null;
+    private ?string $team = null;
 
     public function withCountryCode(string $countryCode): static
     {
         $cloned = clone $this;
         $cloned->countryCode = $countryCode;
+
+        return $cloned;
+    }
+
+    public function withTeam(string $team): static
+    {
+        $cloned = clone $this;
+        $cloned->team = $team;
 
         return $cloned;
     }
@@ -55,6 +60,10 @@ final class DriverRepository
 
         if (null !== $this->countryCode) {
             $query['country_code'] = $this->countryCode;
+        }
+
+        if (null !== $this->team) {
+            $query['team_name'] = $this->team;
         }
 
         $responseData = $this->openF1Client->request(method: 'GET', url: '/v1/drivers?session_key=9158', options: [

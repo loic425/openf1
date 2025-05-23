@@ -50,6 +50,10 @@ final readonly class DriverRepositoryGridProvider implements DataProviderInterfa
             $driverRepository = $driverRepository->withCountryCode($criteria['country']);
         }
 
+        if (!empty($criteria['teamName'] ?? null)) {
+            $driverRepository = $driverRepository->withTeam($criteria['teamName']);
+        }
+
         return $driverRepository->withPagination($page, $itemsPerPage)->paginator();
     }
 }
