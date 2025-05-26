@@ -30,6 +30,4 @@ final readonly class TeamResource implements ResourceInterface
     {
         return $this->name;
     }
-
-
 }
