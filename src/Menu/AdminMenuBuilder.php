@@ -60,5 +60,9 @@ final class AdminMenuBuilder implements MenuBuilderInterface
         $formulaOne->addChild('admin_sessions', ['route' => 'app_admin_session_index'])
             ->setLabel('app.ui.sessions')
         ;
+
+        $formulaOne->addChild('admin_teams', ['route' => 'app_admin_team_index'])
+            ->setLabel('app.ui.teams')
+        ;
     }
 }
