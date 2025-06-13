@@ -20,13 +20,15 @@ use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 use Sylius\Component\Grid\Attribute\AsGrid;
 use Sylius\Component\Grid\Filter\StringFilter;
 
-#[AsGrid]
-final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterface
+#[AsGrid(
+    resourceClass: DriverResource::class,
+    provider: DriverRepositoryGridProvider::class
+)]
+final class DriverGrid extends AbstractGrid
 {
-    public function buildGrid(GridBuilderInterface $gridBuilder): void
+    public function __invoke(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            ->setProvider(DriverRepositoryGridProvider::class)
             ->addFilter(
                 Filter::create('country', CountryFilter::class)
                     ->setFormOptions([
@@ -84,10 +86,5 @@ final class DriverGrid extends AbstractGrid implements ResourceAwareGridInterfac
                 )
             )
         ;
-    }
-
-    public function getResourceClass(): string
-    {
-        return DriverResource::class;
     }
 }
