@@ -1,0 +1,62 @@
+{% import 'shared/helper/table.html.twig' as table %}
+{% import 'shared/helper/pagination.html.twig' as pagination %}
+
+{% set resources = hookable_metadata.context.resources|default(this.resources|default(null)) %}
+{% set data = resources.data|default([]) %}
+{% set definition = resources.definition|default(null) %}
+{% set is_live = attributes is defined %}
+{% set showGridHeaders = not is_live ? true : this.showGridHeaders %}
+{% set columns = this.columns|default(null) %}
+
+<div data-sylius-data-table {{ attributes.defaults(stimulus_controller('data-table', {
+    page: page,
+    pushOnBrowserHistory: pushOnBrowserHistory,
+}))|default(null) }}>
+    {% if data|length > 0 %}
+        <div class="card">
+            {% if showGridHeaders %}
+                <div class="card-body border-bottom py-3">
+                    <div class="d-flex">
+                        {% if data|length > 0 and definition.actionGroups.bulk is defined and definition.getEnabledActions('bulk')|length > 0 %}
+                            <div class="sylius-grid-nav__bulk">
+                                {% for action in definition.getEnabledActions('bulk') %}
+                                    {{ sylius_grid_render_bulk_action(resources, action, null) }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="ms-auto">
+                            {{ pagination.number_of_results_selector(data, definition.limits) }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <div data-loading>
+                <div class="sylius-loader">
+                    <img src="{{ asset('bundles/syliusbootstrapadminui/images/loader.svg') }}" alt="Loading"/>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table card-table table-vcenter datatable" {{ sylius_test_html_attribute('grid-table') }}>
+                    <thead>
+                    <tr>
+                        {{ table.headers(resources, resources.definition, app.request.attributes, columns) }}
+                    </tr>
+                    </thead>
+                    <tbody {{ sylius_test_html_attribute('grid-table-body') }}>
+                    {% for row in resources.data %}
+                        {{ table.row(resources, resources.definition, row, columns) }}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer d-flex align-items-center">
+                <div class="text-muted">
+                    {{ pagination.results_count(data) }}
+                </div>
+                <div class="ms-auto">
+                    {{ pagination.simple(data) }}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
