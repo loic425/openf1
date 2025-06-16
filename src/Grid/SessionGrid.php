@@ -12,10 +12,13 @@ use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Component\Grid\Attribute\AsGrid;
 
-#[AsGrid(resourceClass: SessionResource::class)]
+#[AsGrid(
+    resourceClass: SessionResource::class,
+    name: 'session',
+)]
 final class SessionGrid extends AbstractGrid
 {
-    public function buildGrid(GridBuilderInterface $gridBuilder): void
+    public function __invoke(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
             ->setProvider(SessionApiGridProvider::class)
