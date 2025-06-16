@@ -4,8 +4,6 @@ namespace App\Grid;
 
 use App\Grid\Filter\CountryFilter;
 use App\Grid\Filter\TeamFilter;
-use App\Grid\Provider\DriverApiGridProvider;
-use App\Grid\Provider\DriverFixedGridProvider;
 use App\Grid\Provider\DriverRepositoryGridProvider;
 use App\Resource\DriverResource;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
@@ -16,13 +14,12 @@ use Sylius\Bundle\GridBundle\Builder\Field\TwigField;
 use Sylius\Bundle\GridBundle\Builder\Filter\Filter;
 use Sylius\Bundle\GridBundle\Builder\GridBuilderInterface;
 use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
-use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 use Sylius\Component\Grid\Attribute\AsGrid;
-use Sylius\Component\Grid\Filter\StringFilter;
 
 #[AsGrid(
     resourceClass: DriverResource::class,
-    provider: DriverRepositoryGridProvider::class
+    provider: DriverRepositoryGridProvider::class,
+    name: 'driver',
 )]
 final class DriverGrid extends AbstractGrid
 {

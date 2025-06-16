@@ -1,0 +1,118 @@
+{% set session = hookable_metadata.context.session %}
+
+{% set limit = 5 %}
+
+<div class="page-body">
+    <div class="container-xl">
+        <div class="row">
+            <div class="col-12 card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ 'app.ui.session'|trans }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="divide-y">
+                        <table class="ui very basic celled table">
+                            <tbody>
+                            <tr>
+                                <td class="five wide"><strong class="gray text">{{ 'app.ui.session_key'|trans }}</strong></td>
+                                <td>{{ session.id }}</td>
+                            </tr>
+                            <tr>
+                                <td class="five wide"><strong class="gray text">{{ 'app.ui.location'|trans }}</strong></td>
+                                <td>
+                                    <span title="{{ session.countryCode }}">{{ session.countryCode }}</span>
+                                    -
+                                    <span title="{{ session.circuitShortName }}"> {{ session.circuitShortName }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="five wide"><strong class="gray text">{{ 'app.ui.year'|trans }}</strong>
+                                </td>
+                                <td>{{ session.year }}</td>
+                            </tr>
+                            <tr>
+                                <td class="five wide"><strong class="gray text">{{ 'app.ui.session_name'|trans }}</strong></td>
+                                <td>{{ session.sessionName }}</td>
+                            </tr>
+                            <tr>
+                                <td class="five wide"><strong class="gray text">{{ 'app.ui.session'|trans }}</strong></td>
+                                <td>
+                                    <span title="{{ session.startsAt|date }}">{{ session.startsAt|date }}</span>
+                                    -
+                                    <span title="{{ session.endsAt|date }}">{{ session.endsAt|date }}</span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ 'app.ui.drivers'|trans }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {{ component('sylius_grid_data_table', {
+                        grid: 'driver',
+                        pushOnBrowserHistory: false,
+                        showGridHeaders: false,
+                        limit: limit,
+                        criteria: {
+                            session: session.id,
+                        },
+                    }) }}
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ 'app.ui.teams'|trans }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {{ component('sylius_grid_data_table', {
+                        grid: 'team',
+                        pushOnBrowserHistory: false,
+                        showGridHeaders: false,
+                        limit: limit,
+
+                        criteria: {
+                            session: session.id,
+                        },
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        {{ 'app.ui.radios'|trans }}
+                    </h3>
+                </div>
+                <div class="card-body">
+                    {{ component('sylius_grid_data_table', {
+                        grid: 'team_radio',
+                        pushOnBrowserHistory: false,
+                        showGridHeaders: false,
+                        limit: limit,
+
+                        criteria: {
+                            session: session.id,
+                        },
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -44,6 +44,8 @@ final readonly class SessionApiGridProvider implements DataProviderInterface
                 id: $row['session_key'],
                 year: (string) $row['year'],
                 location: $row['location'],
+                sessionName: $row['session_name'],
+                circuitShortName: $row['circuit_short_name'],
                 countryCode: $row['country_code'],
                 startsAt: new \DateTimeImmutable($row['date_start']),
                 endsAt: new \DateTimeImmutable($row['date_end']),

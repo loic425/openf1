@@ -15,7 +15,7 @@ use Sylius\Bundle\GridBundle\Grid\AbstractGrid;
 use Sylius\Bundle\GridBundle\Grid\ResourceAwareGridInterface;
 use Sylius\Component\Grid\Attribute\AsGrid;
 
-#[AsGrid]
+#[AsGrid(name: 'team_radio')]
 final class TeamRadioGrid extends AbstractGrid implements ResourceAwareGridInterface
 {
     public function buildGrid(GridBuilderInterface $gridBuilder): void
