@@ -1,0 +1,11 @@
+{% form_theme form '@SyliusBootstrapAdminUi/shared/form_theme.html.twig' %}
+
+<div {{ attributes.defaults(stimulus_controller('select-filter', {
+    formName: form.vars.full_name,
+})) }}>
+    {{ form_row(form, {label: filter.label, attr: {
+        'data-action': 'change->live#action change->select-filter#updateUrl',
+        'data-live-action-param': 'onValueChange',
+        'data-model': 'norender|selectedValue',
+    }}) }}
+</div>

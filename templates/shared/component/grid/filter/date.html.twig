@@ -1,0 +1,11 @@
+{% form_theme form.from 'shared/component/grid/filter/form_theme/from_date.html.twig' %}
+{% form_theme form.to 'shared/component/grid/filter/form_theme/to_date.html.twig' %}
+
+<div class="sylius-filters__date" {{ attributes.defaults(stimulus_controller('date-filter', {
+    formName: form.vars.full_name,
+})) }}>
+    {{ form_row(form.from, {attr: {
+        class: 'input-group',
+    }, label: 'sylius.ui.date_filter', label_translation_parameters: {'%label%': filter.label|trans, '%altLabel%': form.from.vars.label|trans}}) }}
+    {{ form_row(form.to, {attr: {class: 'input-group'}}) }}
+</div>

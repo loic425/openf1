@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bad1e81431c27c8dee0e4def2ec08f1",
+    "content-hash": "4cfa96230a40bf4754b0051a1ba3c15d",
     "packages": [
         {
             "name": "babdev/pagerfanta-bundle",
@@ -3051,16 +3051,16 @@
         },
         {
             "name": "sylius/resource-bundle",
-            "version": "v1.13.0-ALPHA.3",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Sylius/SyliusResourceBundle.git",
-                "reference": "ad2f3727e807876cd5372d71ad0c26f3f0b8fbda"
+                "reference": "85b879b10905cfebcbf4274f60d38be3ececb889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/ad2f3727e807876cd5372d71ad0c26f3f0b8fbda",
-                "reference": "ad2f3727e807876cd5372d71ad0c26f3f0b8fbda",
+                "url": "https://api.github.com/repos/Sylius/SyliusResourceBundle/zipball/85b879b10905cfebcbf4274f60d38be3ececb889",
+                "reference": "85b879b10905cfebcbf4274f60d38be3ececb889",
                 "shasum": ""
             },
             "require": {
@@ -3183,7 +3183,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Sylius/SyliusResourceBundle/issues",
-                "source": "https://github.com/Sylius/SyliusResourceBundle/tree/v1.13.0-ALPHA.3"
+                "source": "https://github.com/Sylius/SyliusResourceBundle/tree/v1.13.0"
             },
             "funding": [
                 {
@@ -3191,7 +3191,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-12T07:17:15+00:00"
+            "time": "2025-06-04T05:32:32+00:00"
         },
         {
             "name": "sylius/twig-extra",
@@ -11784,8 +11784,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "sylius/grid-bundle": 20,
-        "sylius/resource-bundle": 15
+        "sylius/grid-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
