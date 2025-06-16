@@ -1,0 +1,6 @@
+{% set criteria = app.request.query.all('criteria') %}
+
+{{ component('sylius_grid_filter.select', {
+    initialCriteria: criteria,
+    filter: filter,
+}) }}

@@ -16,6 +16,21 @@ return static function (ContainerConfigurator $container): void {
                     ],
                 ],
             ],
+
+            'sylius_admin.team_radio.index.content.grid' => [
+                'filters' => [
+                    'template' => 'shared/crud/index/content/grid/filters.html.twig',
+                ],
+                'data_table' => [
+                    'component' => 'sylius_grid_data_table',
+                    'props' => [
+                        'grid' => '@=_context.grid',
+                        'page' => '@=_context.page',
+                        'limit' => '@=_context.limit',
+                        'criteria' => '@=_context.criteria',
+                    ],
+                ],
+            ],
         ],
     ]);
 };

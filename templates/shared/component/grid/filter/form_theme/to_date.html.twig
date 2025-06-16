@@ -1,0 +1,19 @@
+{% extends '@SyliusBootstrapAdminUi/shared/form_theme.html.twig' %}
+
+{% block date_widget %}
+    {% set attr = attr|merge({
+        'data-model': 'toDate',
+        'data-action': 'change->live#action change->date-filter#updateToDateUrl',
+        'data-live-action-param': 'onDateChange',
+    }) -%}
+    {{ parent() }}
+{% endblock %}
+
+{% block time_widget %}
+    {% set attr = attr|merge({
+        'data-model': 'toTime',
+        'data-action': 'change->live#action change->date-filter#updateToTimeUrl',
+        'data-live-action-param': 'onDateChange',
+    }) -%}
+    {{ parent() }}
+{% endblock %}

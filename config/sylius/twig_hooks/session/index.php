@@ -8,16 +8,7 @@ return static function (ContainerConfigurator $container): void {
 
     $container->extension('sylius_twig_hooks', [
         'hooks' => [
-            'sylius_admin.driver.index.content.header.title_block' => [
-                'title' => [
-                    'template' => '@SyliusBootstrapAdminUi/shared/crud/common/content/header/title_block/title.html.twig',
-                    'configuration' => [
-                        'icon' => 'game-icons:full-motorcycle-helmet',
-                    ],
-                ],
-            ],
-
-            'sylius_admin.driver.index.content.grid' => [
+            'sylius_admin.session.index.content.grid' => [
                 'filters' => [
                     'template' => 'shared/crud/index/content/grid/filters.html.twig',
                 ],

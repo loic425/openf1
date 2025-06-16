@@ -25,10 +25,6 @@ final class TeamGrid extends AbstractGrid
     public function buildGridForAdmin(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
-            ->addFilter(
-                StringFilter::create(name: 'name', type: 'contains')
-                    ->setLabel('app.ui.team')
-            )
             ->addField(
                 StringField::create('name')
             )

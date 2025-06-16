@@ -17,14 +17,12 @@ final readonly class TeamRadioApiGridProvider implements DataProviderInterface
 {
     public function __construct(
         private HttpClientInterface $openF1Client,
-        private RequestStack $requestStack,
     ) {
     }
 
     public function getData(Grid $grid, Parameters $parameters): PagerFantaInterface
     {
-        $request = $this->requestStack->getCurrentRequest();
-        $criteria = $request?->query->all('criteria');
+        $criteria = $parameters->get('criteria', []);
 
         $teamRadios = iterator_to_array($this->getTeamRadios($criteria));
 
