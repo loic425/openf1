@@ -5,6 +5,10 @@ app:
         drivers: Drivers
         formula_one: Formula One
         listen: Listen
+        location: Location
+        session: Session
+        session_key: Key
+        session_name: Name
         sessions: Sessions
         show_drivers: Show drivers
         show_team_radios: Show team radios
