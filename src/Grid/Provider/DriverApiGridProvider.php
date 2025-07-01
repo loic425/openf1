@@ -22,7 +22,7 @@ final readonly class DriverApiGridProvider implements DataProviderInterface
     {
         return new Pagerfanta(
             new ArrayAdapter(iterator_to_array(
-                $this->getDrivers($parameters->get('criteria')),
+                $this->getDrivers($parameters->get('criteria', [])),
             ))
         );
     }
@@ -34,6 +34,10 @@ final readonly class DriverApiGridProvider implements DataProviderInterface
 
         if (!empty($criteria['country'] ?? null)) {
             $query['country_code'] = $criteria['country'];
+        }
+
+        if (!empty($criteria['teamName'] ?? null)) {
+            $query['team_name'] = $criteria['teamName'];
         }
 
         $responseData = $this->openF1Client

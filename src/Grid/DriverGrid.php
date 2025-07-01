@@ -4,6 +4,9 @@ namespace App\Grid;
 
 use App\Grid\Filter\CountryFilter;
 use App\Grid\Filter\TeamFilter;
+use App\Grid\Provider\DriverApiGridProvider;
+use App\Grid\Provider\DriverEmptyGridProvider;
+use App\Grid\Provider\DriverFixedGridProvider;
 use App\Grid\Provider\DriverRepositoryGridProvider;
 use App\Resource\DriverResource;
 use Sylius\Bundle\GridBundle\Builder\Action\Action;
@@ -18,7 +21,7 @@ use Sylius\Component\Grid\Attribute\AsGrid;
 
 #[AsGrid(
     resourceClass: DriverResource::class,
-    provider: DriverRepositoryGridProvider::class,
+    provider: DriverApiGridProvider::class,
     name: 'driver',
 )]
 final class DriverGrid extends AbstractGrid
@@ -26,6 +29,7 @@ final class DriverGrid extends AbstractGrid
     public function __invoke(GridBuilderInterface $gridBuilder): void
     {
         $gridBuilder
+            ->setLimits([10, 25])
             ->addFilter(
                 Filter::create('country', CountryFilter::class)
                     ->setFormOptions([
@@ -62,26 +66,26 @@ final class DriverGrid extends AbstractGrid
                     ->setLabel('app.ui.team')
                 ,
             )
-            ->addActionGroup(
-                ItemActionGroup::create(
-                    Action::create('team_radios', 'show')
-                        ->setOptions([
-                            'link' => [
-                                'route' => 'app_admin_team_radio_index',
-                                'parameters' => [
-                                    'criteria' => [
-                                        'driver_number' => [
-                                            'value' => 'resource.number',
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ])
-                        ->setLabel('app.ui.show_team_radios')
-                        ->setIcon('tabler:radio'),
-                    ShowAction::create(),
-                )
-            )
+//            ->addActionGroup(
+//                ItemActionGroup::create(
+//                    Action::create('team_radios', 'show')
+//                        ->setOptions([
+//                            'link' => [
+//                                'route' => 'app_admin_team_radio_index',
+//                                'parameters' => [
+//                                    'criteria' => [
+//                                        'driver_number' => [
+//                                            'value' => 'resource.number',
+//                                        ],
+//                                    ],
+//                                ],
+//                            ],
+//                        ])
+//                        ->setLabel('app.ui.show_team_radios')
+//                        ->setIcon('tabler:radio'),
+//                    ShowAction::create(),
+//                )
+//            )
         ;
     }
 }
